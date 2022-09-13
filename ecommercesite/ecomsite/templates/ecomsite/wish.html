@@ -1,0 +1,96 @@
+{% extends 'ecomsite/main.html' %}
+{% block content %}
+{%load static%}
+ <!-- banner section -->
+    <section class="banner-section inner-page-banner product-detail-banner">
+    </section>
+    <!-- end banner section -->
+
+    <!-- product-detail-page -->
+    <section class="cart-page section page-cacke-bg">
+      <div class="container">
+        <h1 class="page-title">Wish List</h1>
+        <!-- product-detail-section -->
+        <div class="product-detail-section">
+          {%for i in cart_items %}
+          <div class="cart-detail-row">
+
+            <div class="row align-items-center">
+              <div class="col-lg-7">
+                <div class="row align-items-center">
+                  <div class="col-md-4">
+                    <a href="{%url 'productdetail' id=i.id %}" >
+                    <div class="product-detail-img">
+                      <img src="/media/{{i.product_image}}" class="img-fluid" alt="">
+                    </div></a>
+                  </div>
+                  <div class="col-md-5">
+                    <h2 class="product-name-detail">
+                      <span style="color:#7f5a1f">{{i.product_name}}</span>
+                    </h2>
+                    <p style="color:#7f5a1f">Product ID: {{i.id}}</p>
+                  </div>
+                  <div class="col-md-3">
+                    <p class="product-price">${{i.product_price}}<span>Per Unit</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-4 d-flex price-col align-items-center">
+              <p>${{i.total_price}}</p>
+
+
+              <span class="cart-item-delete">
+                <a href="{% url 'delete_list_item' id=i.id %}"><img src='{% static "ecomsite/images/delete-icon.svg"%}' class="img-fluid" alt=""></a>
+              </span>
+              </div>
+            </div>
+
+          </div>
+            {%endfor%}
+        </div>
+
+
+        <!-- end product-detail-section -->
+
+        <!-- continue-shopping-row -->
+        <div class="continue-shopping-row">
+          <div class="row">
+            <div class="col-md-5">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a href="/products/"><img src='{%static "ecomsite/images/down-arow-icon.svg"%}' class="img-fluid arrow-icon" alt="">Continue Shopping</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-7 text-md-right">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a href="/delete_list/"><img src='{%static "ecomsite/images/delete-icon.svg"%}' class="img-fluid dlt-icon" alt=""> Clear Wishlist</a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- end continue-shopping-row -->
+
+        <!-- price detail -->
+        <div class="price-detail-main">
+          <div class="price-row">
+
+            <div class="row price-total">
+
+              <div class="col-7"><p>TOTAL</p></div>
+              <div class="col-5 text-right"><p>${{rounded_sub_total}}</p></div>
+
+            </div>
+          </div>
+          <button type="button" class="btn btn-fill btn-place-order w-100 mt-3">Place Order</button>
+        </div>
+        <!-- end price detail -->
+      </div>
+    </section>
+    <!-- end product-detail-page -->
+
+{%endblock%}

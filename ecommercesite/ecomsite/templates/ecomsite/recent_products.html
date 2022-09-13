@@ -1,0 +1,15 @@
+{%load static%}
+{% for i in plist%}
+
+    <div class="col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+      <div class="single-product-box">
+        <img src="/media/{{i.pr_image}}" class="img-fluid product-img" alt="">
+        <h4>{{i.pr_title}}</h4>
+        <p>{{i.pr_desc}}</p>
+        <div class="d-flex">
+          <a href="#" class="product-cart"><img src='{% static "ecomsite/images/cart-icon.svg" %}'class="img-fluid" alt=""></a>
+          <a href="#" class="product-cart"><img src='{%static "ecomsite/images/wishlist-icon.svg" %}' class="img-fluid" alt=""></a>
+        </div>
+      </div>
+    </div>
+{%endfor%}

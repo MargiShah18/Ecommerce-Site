@@ -1,0 +1,42 @@
+{% extends 'ecomsite/main.html' %}
+
+
+
+
+{% block content %}
+{%load static%}
+<section class="banner-section inner-page-banner">
+      <div class="container">
+        <h1 class="text-center">Search results</h1>
+      </div>
+    </section>
+
+
+<div class="container my-3">
+    {% for i in allPosts  %}
+     <a href="{%url 'productdetail' id=i.pr_id %} " class="text-para">
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <span> {{i.pr_category}}</span>
+            <h3 class="mb-0 section-title">{{i.pr_title}}</h3>
+            <div class="mb-1 text-muted">{{i.pr_brand}}</div>
+            <p class="text-para card-text mb-auto">{{i.pr_desc| truncatechars:500}}</p>
+<!--            </div>-->
+<!--              <button type="button" class="btn btn-fill btn-add-cart mt-3"><img src="images/cart-icon-white.svg" class="img-fluid" alt=""> ADD TO CART</button>-->
+<!--            </div>-->
+
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                <title>Placeholder</title>
+                <img src='/media/{{i.pr_image}}'>
+            </svg>
+        </div>
+
+  </div>
+     </a>
+              <button type="button" class="btn btn-fill btn-add-cart mt-3"><img src='{%static "ecomsite/images/cart-icon-white.svg"%}' class="img-fluid" alt=""> ADD TO CART</button>
+</div>
+        {% endfor %}
+    </div>
+ {% endblock %}
